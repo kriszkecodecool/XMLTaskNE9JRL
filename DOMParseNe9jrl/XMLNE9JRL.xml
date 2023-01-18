@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="XMLSchemaNE9JRL.xsd">
+  <category id="C_0">
+    <Name>Elektronikai Termékek</Name>
+  </category>
+  
+  <category id="C_1">
+    <Name>Egészségügyi Termékek</Name>
+  </category>
+  
+  <category id="C_2">
+    <Name>Könyvek</Name>
+  </category>
+  
+  
+  <paymentmethod id="PM_0">
+    <Name>Paypal</Name>
+    <fee>500</fee>
+  </paymentmethod>
+  
+  <paymentmethod id="PM_1">
+    <Name>SimplePay</Name>
+    <fee>300</fee>
+  </paymentmethod>
+  
+  <paymentmethod id="PM_2">
+    <Name>Banki Átutalás</Name>
+    <fee>200</fee>
+  </paymentmethod>
+  
+  
+  <user id="U_0">
+    <Name>
+      <FirstName>Iváncsik</FirstName>
+      <LastName>Krisztián</LastName>
+    </Name>
+    <Password>teszt</Password>
+    <Address>Második Utca 1</Address>
+    <Email>ivancsik.krisztian@uni-miskolc.hu</Email>
+  </user>
+  
+  <user id="U_1">
+    <Name>
+      <FirstName>Éles</FirstName>
+      <LastName>Gréta</LastName>
+    </Name>
+    <Password>teszt2</Password>
+    <Address>Második Utca 1</Address>
+    <Email>eles.greta@barsony-iskola.hu</Email>
+  </user>
+  
+  <user id="U_2">
+    <Name>
+      <FirstName>Tóth</FirstName>
+      <LastName>Elemér</LastName>
+    </Name>
+    <Password>elemervagyok123</Password>
+    <Address>Ötödik Utca 3</Address>
+    <Email>elemerapusztito@freemail.hu</Email>
+  </user>
+  
+
+
+  <shop id="S_0">
+    <Name>Media Markt</Name>
+    <Category>>Elektronikai Termékek</Category>
+    <PaymentMethod>Paypal</PaymentMethod>
+  </shop>
+  
+  <shop id="S_1">
+    <Name>Alza</Name>
+    <Category>Egészségügyi Termékek</Category>
+    <PaymentMethod>SimplePay</PaymentMethod>
+  </shop>
+  
+  <shop id="S_2">
+    <Name>Libri</Name>
+    <Category>Könyvek</Category>
+    <PaymentMethod>Banki Átutalás</PaymentMethod>
+  </shop>
+  
+
+  <order id="O_0">
+    <ShippingDate>2022-03-04</ShippingDate>
+    <PaymentDate>2022-03-01</PaymentDate>
+  </order>
+  
+  <order id="O_1">
+    <ShippingDate>2023-01-15</ShippingDate>
+    <PaymentDate>2023-01-12</PaymentDate>
+  </order>
+  
+  <order id="O_2">
+    <ShippingDate>2023-01-10</ShippingDate>
+    <PaymentDate>2023-01-09</PaymentDate>
+  </order>
+  
+  
+  <review id="R_0">
+    <Comment>A bolt nem akarja visszavenni a hibás terméket amit küldött.</Comment>
+    <Type>shop</Type>
+  </review>
+  
+  <review id="R_1">
+    <Comment>Nagyon segítőkész a support!</Comment>
+    <Type>shop</Type>
+  </review>
+  
+  <review id="R_2">
+    <Comment>Imádom ezt a terméket!</Comment>
+    <Type>item</Type>
+  </review>
+  
+
+  <item id="I_0">
+    <Name>Pendrive</Name>
+    <Category>Elektronikai Termékek</Category>
+  </item>
+  
+  <item id="I_1">
+    <Name>C Vitamin</Name>
+    <Category>Egészségügyi Termékek</Category>
+  </item>
+  
+  <item id="I_2">
+    <Name>Dracula</Name>
+    <Category>Könyvek</Category>
+  </item>
+</database>
