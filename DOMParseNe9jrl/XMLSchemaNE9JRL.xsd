@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/XMLSchemaNE9JRL" elementFormDefault="qualified">
+	<xs:element name="database"> <!-- < Létrehozzuk a kezdő objektumunkat. > -->
+		<xs:complexType>
+			<xs:sequence> <!-- < Definiáljuk a saját típusainkat. > -->
+				<xs:element name="category" type="categoryType" minOccurs = "0" maxOccurs="unbounded"/>
+				<xs:element name="paymentmethod" type="paymentmethodType" minOccurs = "0" maxOccurs="unbounded"/>
+				<xs:element name="user" type="userType" minOccurs = "0" maxOccurs="unbounded"/>
+				<xs:element name="shop" type="shopType" minOccurs = "0" maxOccurs="unbounded"/>
+				<xs:element name="order" type="orderType" minOccurs = "0" maxOccurs="unbounded"/>
+				<xs:element name="review" type="reviewType" minOccurs = "0" maxOccurs="unbounded"/>
+				<xs:element name="item" type="itemType" minOccurs = "0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+		
+		<!-- < Primary key-ek definiálása. > -->
+		<xs:key name="UserID">
+			<xs:selector xpath="user"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:key name="ShopID">
+			<xs:selector xpath="shop"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:key name="OrderID">
+			<xs:selector xpath="order"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:key name="ReviewID">
+			<xs:selector xpath="review"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:key name="ItemID">
+			<xs:selector xpath="item"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:key name="CategoryID">
+			<xs:selector xpath="category"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:key name="PaymentMethodID">
+			<xs:selector xpath="paymentmethod"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		
+		<!-- < Foreign key-ek definiálása > -->
+		<xs:keyref name="shop-category" refer="CategoryID">
+			<xs:selector xpath="shop/category"/>
+			<xs:field xpath="."/>
+		</xs:keyref>
+		<xs:keyref name="shop-paymentmethod" refer="PaymentMethodID">
+			<xs:selector xpath="shop/paymentmethod"/>
+			<xs:field xpath="."/>
+		</xs:keyref>
+		<xs:keyref name="item-category" refer="CategoryID">
+			<xs:selector xpath="item/category"/>
+			<xs:field xpath="."/>
+		</xs:keyref>
+	</xs:element>
+		<!-- < Létrehozzuk a saját komplex típusainkat, amit előzőleg definiáltunk. > -->
+
+	<xs:complexType name="userType">
+		<xs:sequence>
+			<xs:element name="Name" type="nameType"/>
+			<xs:element name="Password" type="xs:string"/>
+			<xs:element name="Address" type="xs:string"/>
+			<xs:element name="Email" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"></xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="nameType">
+		<xs:sequence>
+			<xs:element name="FirstName" type="xs:string"/>
+			<xs:element name="LastName" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="shopType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="Category" type="xs:string"/>
+			<xs:element name="PaymentMethod" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"></xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="orderType">
+		<xs:sequence>
+			<xs:element name="ShippingDate" type="xs:date"/>
+			<xs:element name="PaymentDate" type="xs:date"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"></xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="reviewType">
+		<xs:sequence>
+			<xs:element name="Comment" type="xs:string"/>
+			<xs:element name="Type" type="commentType"></xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"></xs:attribute>
+	</xs:complexType>
+
+<!-- < Létrehozunk valami enumszerűséget egy simpleType-al. A kommenteknek két típusa lehet, ezzel különböztetjük meg, hogy egy bolthoz kommentelünk, vagy egy termékhez.. > -->
+	<xs:simpleType name="commentType" final="restriction" >
+	    <xs:restriction base="xs:string">
+	        <xs:enumeration value="shop" />
+	        <xs:enumeration value="item" />
+	    </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="itemType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="Category" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"></xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="categoryType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"></xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="paymentmethodType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="fee" type="xs:int"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"></xs:attribute>
+	</xs:complexType>
+
+</xs:schema>
